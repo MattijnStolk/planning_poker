@@ -20,6 +20,6 @@ export const typeDefs = `#graphql
     createSession(name: String!): Session!
     joinSession(sessionId: ID!, name: String!): Player!
     vote(sessionId: ID!, playerId: ID!, value: String!): Session!
-    revealVotes(sessionId: ID!): Session!
+    resetVotes(sessionId: ID!, playerId: ID!): Session!
   }
 `;
