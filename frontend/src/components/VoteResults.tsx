@@ -1,15 +1,21 @@
+"use client";
+
 import type { Player } from "@/types/session";
+import { useI18n } from "@/providers/I18nProvider";
 
 type VoteResultsProps = {
   players: Player[];
 };
 
 export function VoteResults({ players }: VoteResultsProps) {
+  const { t } = useI18n();
   const votes = players.map((p) => p.vote ?? "—").join(", ");
   return (
-    <div className="rounded-lg border border-amber-900/60 bg-amber-950/30 px-4 py-3 text-sm text-amber-100">
-      <p className="font-semibold text-amber-200">Results</p>
-      <p className="mt-1 font-mono text-amber-100/90">{votes}</p>
+    <div className="rounded-lg border border-[var(--color-accent-warm-border)] bg-[var(--color-accent-warm-bg)] px-4 py-3 text-sm text-[var(--color-accent-warm)]">
+      <p className="font-semibold text-[var(--color-accent-warm)]">
+        {t("session.resultsTitle")}
+      </p>
+      <p className="mt-1 font-mono opacity-95">{votes}</p>
     </div>
   );
 }

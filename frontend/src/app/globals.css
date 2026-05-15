@@ -2,6 +2,42 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  /* Core surfaces */
+  --color-bg: #020617;
+  --color-surface: #0f172a;
+  --color-surface-elevated: #020617;
+  --color-border: #334155;
+  --color-border-muted: #1e293b;
+
+  /* Text */
+  --color-text: #f1f5f9;
+  --color-muted: #94a3b8;
+  --color-muted-deep: #64748b;
+
+  /* Semantic */
+  --color-primary: #0284c7;
+  --color-primary-hover: #0ea5e9;
+  --color-success: #059669;
+  --color-success-hover: #10b981;
+  --color-warning: #d97706;
+  --color-warning-hover: #f59e0b;
+  --color-danger: #f87171;
+
+  /* Accents used in cards / votes */
+  --color-accent-warm: #fcd34d;
+  --color-accent-warm-bg: rgba(120, 53, 15, 0.22);
+  --color-accent-warm-border: rgba(180, 83, 9, 0.35);
+
+  --color-chip-success-bg: rgba(6, 78, 59, 0.35);
+  --color-chip-success-text: #6ee7b7;
+
+  --color-poker-selected-border: #38bdf8;
+  --color-poker-selected-bg: rgba(12, 74, 110, 0.45);
+}
+
 body {
   font-family: ui-sans-serif, system-ui, sans-serif;
+  background-color: var(--color-bg);
+  color: var(--color-text);
 }

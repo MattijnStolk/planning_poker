@@ -40,9 +40,9 @@ export const VOTE = gql`
   }
 `;
 
-export const REVEAL_VOTES = gql`
-  mutation RevealVotes($sessionId: ID!) {
-    revealVotes(sessionId: $sessionId) {
+export const RESET_VOTES = gql`
+  mutation ResetVotes($sessionId: ID!, $playerId: ID!) {
+    resetVotes(sessionId: $sessionId, playerId: $playerId) {
       id
       hostId
       revealed

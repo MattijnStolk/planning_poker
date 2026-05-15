@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { ApolloWrapper } from "./ApolloWrapper";
+import { AppProviders } from "@/providers/AppProviders";
+import { LanguageToggle } from "@/components/LanguageToggle";
 
 export const metadata: Metadata = {
   title: "Scrum Poker",
@@ -14,8 +15,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="min-h-screen bg-slate-950 text-slate-100 antialiased">
-        <ApolloWrapper>{children}</ApolloWrapper>
+      <body className="min-h-screen antialiased">
+        <AppProviders>
+          <div className="flex justify-end px-4 pt-3">
+            <LanguageToggle />
+          </div>
+          {children}
+        </AppProviders>
       </body>
     </html>
   );
