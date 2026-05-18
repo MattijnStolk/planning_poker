@@ -11,6 +11,15 @@ export const GET_SESSION = gql`
         name
         vote
       }
+      history {
+        round
+        createdAt
+        votes {
+          playerId
+          playerName
+          vote
+        }
+      }
     }
   }
 `;

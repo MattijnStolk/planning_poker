@@ -19,14 +19,6 @@ export function HomePage() {
         <CreateSessionForm />
         <JoinSessionForm />
       </div>
-      <div className="text-center">
-        <Link
-          href="/"
-          className="text-xs text-[var(--color-muted-deep)] hover:text-[var(--color-muted)]"
-        >
-          {t("home.refresh")}
-        </Link>
-      </div>
     </main>
   );
 }

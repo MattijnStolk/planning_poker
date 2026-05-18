@@ -36,9 +36,25 @@ flowchart LR
 
 ### Domain and layout
 
-- **Domain:** `Session` has `id`, `hostId`, `revealed`, `players[]`; each `Player` has `id`, `name`, optional `vote`.
-- **Backend:** `[backend/src/index.ts](backend/src/index.ts)` wires Express + Apollo; schema SDL lives inline in `[backend/src/schema/typeDefs.ts](backend/src/schema/typeDefs.ts)`; thin resolvers in `[backend/src/schema/sessionResolvers.ts](backend/src/schema/sessionResolvers.ts)`; application logic in `[backend/src/services/sessionService.ts](backend/src/services/sessionService.ts)`; guards in `[backend/src/store/sessionGuards.ts](backend/src/store/sessionGuards.ts)`; store in `[backend/src/store/sessions.ts](backend/src/store/sessions.ts)`.
-- **Frontend:** `[frontend/src/providers/AppProviders.tsx](frontend/src/providers/AppProviders.tsx)` composes locale + Apollo Client for the tree; operations in `[frontend/src/graphql/](frontend/src/graphql/)`; session UI under `[frontend/src/components/session/](frontend/src/components/session/)` with `pollInterval: 2000` on the session query; content in `[frontend/src/i18n/locales/](frontend/src/i18n/locales/)`.
+**Session model.** A `Session` has `id`, `hostId`, `revealed`, `players`, and `history` (always present; starts empty). Each `Player` has `id`, `name`, and optional `vote`. When a round completes, one **RoundHistory** row is appended: `round`, ISO `createdAt`, and `votes[]` snapshots `{ playerId, playerName, vote }` taken at reveal time so past rows stay stable if players join later or names change elsewhere.
+
+**Where things live**
+
+| Area | Role |
+|------|------|
+| `backend/src/index.ts` | Express + Apollo bootstrap |
+| `backend/src/schema/` | GraphQL SDL (`typeDefs`) and resolvers |
+| `backend/src/services/sessionService.ts` | Vote flow, reset, history append |
+| `backend/src/store/` | In-memory sessions + guards |
+| `backend/src/types/RoundHistory.ts` | History snapshot types |
+| `frontend/src/providers/AppProviders.tsx` | Apollo Client + i18n for the tree |
+| `frontend/src/components/session/` | Session room UI (`GuessHistory`, etc.) |
+| `frontend/src/graphql/` | Operations (session query polls every 2s) |
+| `frontend/src/i18n/locales/` | EN / NL strings |
+
+### Guess history
+
+When the **last** vote in a round causes everyone to have voted, `revealed` flips to `true` and **one** history row is appended (`history` is always present on `Session`, initially empty). The inner `if (!session.revealed)` guard in `vote()` ensures we do not append duplicates if a client sends extra votes while already revealed. **`resetVotes`** clears current votes and `revealed` but **does not** trim `history`. History is **not** aggregated (no averages); it is a literal list of per-player votes per finished round.
 
 ### Apollo Provider
 
@@ -75,6 +91,7 @@ Environment variables are a single string; the `[cors](https://github.com/expres
 | **No auth**                            | Out of scope. Not required for small planning poker application.                                                             |
 | **Short session codes + UUID players** | Room id stays easy to share; each player gets a UUID so they are not confused with game codes and collisions are negligible. |
 | **Vote secrecy**                       | The UI hides values until reveal, the wire payload still includes votes (no field-level redaction).                          |
+| **Guess history in memory**            | Simple to ship; same lifecycle as sessions—lost on API restart unless persisted elsewhere.                                   |
 
 ## What would improve with more time
 

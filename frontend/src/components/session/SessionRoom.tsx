@@ -11,7 +11,7 @@ import {
   SessionMissingPlayer,
   SessionNotFound,
 } from "@/components/session/SessionMessages";
-import { SessionStatus } from "@/components/session/SessionStatus";
+import { GuessHistory } from "@/components/session/GuessHistory";
 import { VotePanel } from "@/components/session/VotePanel";
 import { GET_SESSION } from "@/graphql/queries";
 import { RESET_VOTES, VOTE } from "@/graphql/mutations";
@@ -104,8 +104,6 @@ export function SessionRoom({ sessionId }: SessionRoomProps) {
         </Link>
       </div>
 
-      <SessionStatus revealed={currentSession.revealed} />
-
       <PlayerList
         players={currentSession.players}
         revealed={currentSession.revealed}
@@ -134,6 +132,8 @@ export function SessionRoom({ sessionId }: SessionRoomProps) {
           {resetting ? t("session.nextGuessLoading") : t("session.nextGuess")}
         </button>
       ) : null}
+
+      <GuessHistory entries={currentSession.history ?? []} />
     </div>
   );
 }

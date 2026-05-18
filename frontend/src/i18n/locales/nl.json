@@ -1,7 +1,6 @@
 {
   "home.title": "Scrum Poker",
   "home.subtitle": "Maak een sessie aan of neem deel, stem met planning-pokerkaarten; resultaten verschijnen automatisch als iedereen gestemd heeft.",
-  "home.refresh": "Startpagina vernieuwen",
   "create.title": "Sessie aanmaken",
   "create.nameLabel": "Jouw naam",
   "create.submit": "Aanmaken & starten",
@@ -21,10 +20,6 @@
   "session.missingPlayerBeforeLink": "Open de sessie via ",
   "session.missingPlayerLink": "home",
   "session.missingPlayerAfterLink": " na aanmaken of deelnemen zodat je stem gekoppeld kan worden.",
-  "session.polling": "Polling elke",
-  "session.pollingSeconds": "2s",
-  "session.revealed": "Getoond",
-  "session.hidden": "Verborgen",
   "session.youBadge": "jij",
   "session.voted": "Gestemd",
   "session.waiting": "Wacht",
@@ -34,6 +29,9 @@
   "session.waitHostReset": "Iedereen heeft gestemd — wacht tot de host een nieuwe ronde start.",
   "session.nextGuess": "Volgende schatting",
   "session.nextGuessLoading": "Bezig met resetten…",
+  "session.historyTitle": "Geschiedenis van schattingen",
+  "session.historyEmpty": "Nog geen afgeronde rondes — stemmen verschijnen hier nadat iedereen gestemd heeft.",
+  "session.historyRound": "Ronde",
   "language.en": "EN",
   "language.nl": "NL",
   "language.label": "Taal"

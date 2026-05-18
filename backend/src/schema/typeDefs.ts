@@ -1,4 +1,16 @@
 export const typeDefs = `#graphql
+  type RoundHistoryVote {
+    playerId: ID!
+    playerName: String!
+    vote: String!
+  }
+
+  type RoundHistory {
+    round: Int!
+    createdAt: String!
+    votes: [RoundHistoryVote!]!
+  }
+
   type Player {
     id: ID!
     name: String!
@@ -10,6 +22,7 @@ export const typeDefs = `#graphql
     hostId: String!
     revealed: Boolean!
     players: [Player!]!
+    history: [RoundHistory!]!
   }
 
   type Query {

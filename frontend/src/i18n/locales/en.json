@@ -1,7 +1,6 @@
 {
   "home.title": "Scrum Poker",
   "home.subtitle": "Create or join a session, vote with poker cards, results appear automatically when everyone has voted.",
-  "home.refresh": "Refresh home",
   "create.title": "Create session",
   "create.nameLabel": "Your name",
   "create.submit": "Create & enter",
@@ -21,10 +20,6 @@
   "session.missingPlayerBeforeLink": "Open the session from ",
   "session.missingPlayerLink": "home",
   "session.missingPlayerAfterLink": " after creating or joining so your vote can be attributed.",
-  "session.polling": "Polling every",
-  "session.pollingSeconds": "2s",
-  "session.revealed": "Revealed",
-  "session.hidden": "Hidden",
   "session.youBadge": "you",
   "session.voted": "Voted",
   "session.waiting": "Waiting",
@@ -34,6 +29,9 @@
   "session.waitHostReset": "Everyone voted — waiting for the host to start the next round.",
   "session.nextGuess": "Next guess",
   "session.nextGuessLoading": "Resetting…",
+  "session.historyTitle": "Guess history",
+  "session.historyEmpty": "No completed rounds yet — votes appear here after everyone has voted.",
+  "session.historyRound": "Round",
   "language.en": "EN",
   "language.nl": "NL",
   "language.label": "Language"

@@ -71,6 +71,7 @@ Or install each package separately and run inside `backend/` / `frontend/` as us
 3. **Vote** — pick a card (`1`, `2`, `3`, `5`, `8`, `13`, `?`). Until everyone has voted, the UI shows only **Voted / Waiting**, not values.
 4. **Auto reveal** — when **every** player has voted, results show automatically (backend sets `revealed = true`).
 5. **Next guess** — the **host** can reset the round: votes clear, `revealed` goes false; players stay in the same session.
+6. **Guess history** — each completed round (after auto-reveal) is stored as a snapshot of who voted what. The session screen shows **Guess history** below the current round, **newest rounds first**. Earlier rounds stay visible after **Next guess**. History is kept **only in the API process memory**; it is cleared if the backend restarts.
 
 ### Language
 
